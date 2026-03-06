@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feliz Día de la Mujer - DUGEC</title>
+
+  <style>
+    :root{
+      --bg1:#2b0a3d;
+      --bg2:#7b2cbf;
+      --bg3:#ff4d6d;
+      --card:#ffffff12;
+      --white:#fff;
+      --shadow: 0 12px 35px rgba(0,0,0,.25);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+      color:var(--white);
+      background: radial-gradient(1100px 700px at 10% 10%, rgba(255,255,255,.12), transparent 50%),
+                  radial-gradient(900px 600px at 90% 20%, rgba(255,255,255,.10), transparent 55%),
+                  linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+      overflow-x:hidden;
+    }
+
+    .wrap{
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 26px 16px 40px;
+    }
+
+    .header{
+      padding: 22px 18px;
+      border-radius: 18px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(10px);
+    }
+
+    .badge{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.18);
+      font-size: 13px;
+      letter-spacing:.2px;
+    }
+
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(26px, 4vw, 40px);
+      line-height: 1.15;
+    }
+
+    .sub{
+      margin:0;
+      opacity:.95;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 900px){
+      .grid{grid-template-columns: 1fr;}
+    }
+
+    .panel{
+      border-radius: 18px;
+      background: var(--card);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.14);
+      backdrop-filter: blur(10px);
+      padding: 14px;
+    }
+
+    /* Carrusel */
+    .carousel{
+      position:relative;
+      border-radius: 16px;
+      background:#000;
+      padding:10px;
+      overflow:hidden;
+    }
+    .carousel img{
+      width:100%;
+      height: 520px;
+      object-fit: contain; /* ✅ NO RECORTA */
+      border-radius: 12px;
+      display:block;
+      background:#000;
+    }
+    @media (max-width: 650px){
+      .carousel img{height: 360px;}
+    }
+
+    .nav{
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width:48px;
+      height:48px;
+      border-radius: 999px;
+      border: none;
+      cursor:pointer;
+      color:#fff;
+      background: rgba(0,0,0,.55);
+      font-size:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:.2s;
+    }
+    .nav:hover{background: rgba(0,0,0,.75);}
+    .prev{left:14px;}
+    .next{right:14px;}
+
+    .cap{
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.14);
+      font-size: 15px;
+      line-height: 1.5;
+      min-height: 48px;
+    }
+
+    /* Miniaturas */
+    .thumbs{
+      margin-top: 12px;
+      display:grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 8px;
+    }
+    @media (max-width: 900px){
+      .thumbs{grid-template-columns: repeat(8, 1fr);}
+    }
+    @media (max-width: 650px){
+      .thumbs{grid-template-columns: repeat(6, 1fr);}
+    }
+
+    .thumbs button{
+      padding:0;
+      border:none;
+      cursor:pointer;
+      border-radius: 10px;
+      overflow:hidden;
+      outline: 2px solid transparent;
+      transition:.15s;
+      background:#000;
+    }
+    .thumbs img{
+      width:100%;
+      height:60px;
+      object-fit: cover;
+      display:block;
+      opacity:.95;
+      transform: scale(1.01);
+    }
+    .thumbs button.active{
+      outline: 2px solid rgba(255,255,255,.9);
+      box-shadow: 0 6px 18px rgba(0,0,0,.35);
+    }
+
+    /* Panel derecho */
+    .title2{
+      margin:0 0 8px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .list{
+      margin: 8px 0 0;
+      padding-left: 18px;
+      opacity:.95;
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .btnRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+    }
+
+    .btn{
+      border:none;
+      cursor:pointer;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-weight: 700;
+      color:#fff;
+      background: rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.22);
+      transition:.18s;
+      flex: 1;
+      min-width: 170px;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.22);}
+
+    .btnPrimary{
+      background: #ff006e;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+    .btnPrimary:hover{background:#ff2b85;}
+
+    .msgBox{
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.16);
+      min-height: 90px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      font-size: 16px;
+      line-height:1.55;
+      font-weight:600;
+    }
+
+    .footer{
+      margin-top: 14px;
+      opacity:.9;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* Confetti */
+    .confetti{
+      position: fixed;
+      top:-12px;
+      width: 10px;
+      height: 14px;
+      opacity:.9;
+      animation: fall linear forwards;
+      z-index: 9999;
+      border-radius: 2px;
+    }
+    @keyframes fall{
+      to{ transform: translateY(110vh) rotate(360deg); opacity: 1;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="header">
+      <div class="badge">💐 DUGEC – UPCH • 💜 Día de la Mujer</div>
+      <h1>Feliz Día de la Mujer ✨</h1>
+      <p class="sub">
+        Este detalle es para ustedes, mujeres de la <b>Dirección Universitaria de Gestión de la Calidad</b>.
+        Gracias por su compromiso, su energía, su calidez y por el trabajo increíble que hacen día a día.
+        <br><br>
+        Hoy celebro su fuerza, su talento y todo lo bonito que aportan al equipo. 💜
+      </p>
+    </div>
+
+    <div class="grid">
+
+      <!-- IZQUIERDA: Carrusel -->
+      <div class="panel">
+        <div class="carousel">
+          <button class="nav prev" onclick="prev()">◀</button>
+          <img id="mainImg" src="dugec_01.jpg" alt="Recuerdo DUGEC">
+          <button class="nav next" onclick="next()">▶</button>
+        </div>
+
+        <div class="cap" id="caption">
+          📸 Recuerdos que valen oro: gracias por hacer del trabajo un lugar más humano.
+        </div>
+
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+
+      <!-- DERECHA: Mensajes -->
+      <div class="panel">
+        <div class="title2">💜 Un mensaje para ustedes</div>
+        <div class="msgBox" id="msgBox">
+          Presiona “Mensaje sorpresa” y te saldrá una dedicatoria distinta ✨
+        </div>
+
+        <div class="btnRow">
+          <button class="btn btnPrimary" onclick="mensajeSorpresa()">Mensaje sorpresa 💌</button>
+          <button class="btn" onclick="confetti()">Celebrar 🎉</button>
+          <button class="btn" onclick="shareWhatsApp()">Compartir por WhatsApp 📲</button>
+        </div>
+
+        <ul class="list">
+          <li>Gracias por su profesionalismo y su calidad humana.</li>
+          <li>Gracias por su paciencia, su apoyo y su compañerismo.</li>
+          <li>Gracias por inspirar y sostener al equipo con su energía.</li>
+        </ul>
+
+        <div class="footer">
+          Hecho con cariño para mi equipo. <br>
+          <b>Feliz Día de la Mujer</b> — que nunca falten motivos para sonreír 🌷
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+<script>
+  // ✅ EDITA AQUÍ SOLO SI AUMENTAS MÁS FOTOS
+  const fotos = [
+    {src:"dugec_01.jpg", cap:"🌷 Gracias por su entrega y por sumar siempre con buena vibra."},
+    {src:"dugec_02.jpg", cap:"✨ Cada una aporta algo único: y eso hace grande al equipo."},
+    {src:"dugec_03.jpg", cap:"💜 Ustedes hacen que el trabajo sea más humano y más bonito."},
+    {src:"dugec_04.jpg", cap:"🌟 Admiración total por su constancia y su profesionalismo."},
+    {src:"dugec_05.jpg", cap:"🤝 Gracias por apoyarnos y enseñar con el ejemplo."},
+    {src:"dugec_06.jpg", cap:"🌸 Hoy celebramos su fuerza y su gran corazón."},
+    {src:"dugec_07.jpg", cap:"🏆 Gracias por hacer que las cosas salgan bien… incluso cuando es difícil."},
+    {src:"dugec_08.jpg", cap:"💐 Feliz Día de la Mujer a las cracks de DUGEC."},
+    {src:"dugec_09.jpg", cap:"✨ Gracias por su compromiso con la calidad y con las personas."},
+    {src:"dugec_10.jpg", cap:"🌷 Que siempre reciban el mismo apoyo que ustedes dan."},
+
+    // Si agregas hasta 20 fotos, solo sigue la secuencia:
+    {src:"dugec_11.jpg", cap:"💜 Gracias por hacer equipo de verdad."},
+    {src:"dugec_12.jpg", cap:"🌟 Su trabajo se nota, se valora y se agradece."},
+    {src:"dugec_13.jpg", cap:"🌸 Que su día esté lleno de detalles bonitos."},
+    {src:"dugec_14.jpg", cap:"✨ Ustedes inspiran: con lo que hacen y con cómo son."},
+    {src:"dugec_15.jpg", cap:"💐 ¡Un abrazo enorme para todas!"},
+
+    {src:"dugec_16.jpg", cap:"🤝 Gracias por el compañerismo y por el buen corazón."},
+    {src:"dugec_17.jpg", cap:"🌷 Su energía positiva se siente y se contagia."},
+    {src:"dugec_18.jpg", cap:"✨ DUGEC brilla más con ustedes."},
+    {src:"dugec_19.jpg", cap:"💜 Gracias por su dedicación y por su sonrisa."},
+    {src:"dugec_20.jpg", cap:"🌸 Feliz Día de la Mujer, hoy y siempre."},
+  ];
+
+  // Mensajes sorpresa (puedes agregar más)
+  const mensajes = [
+    "💜 Feliz Día de la Mujer. Gracias por su esfuerzo, su calidez y por sostener al equipo con tanta calidad humana.",
+    "🌷 Ustedes hacen la diferencia: con su profesionalismo, su energía y su compromiso diario.",
+    "✨ Gracias por todo lo que aportan: ideas, orden, alegría, empatía y mucha fortaleza.",
+    "💐 Hoy celebro su trabajo y su esencia. ¡Qué gusto compartir equipo con ustedes!",
+    "🤝 Gracias por el compañerismo y por hacer que el día a día sea más llevadero.",
+    "🌟 Su trabajo se valora muchísimo. ¡Feliz Día de la Mujer, mujeres increíbles!",
+    "🌸 Que este día les recuerde lo importantes que son. ¡Un abrazo para cada una!"
+  ];
+
+  let idx = 0;
+  const mainImg = document.getElementById("mainImg");
+  const caption = document.getElementById("caption");
+  const thumbs = document.getElementById("thumbs");
+  const msgBox = document.getElementById("msgBox");
+
+  function renderThumbs(){
+    thumbs.innerHTML = "";
+    // Muestra hasta 20 miniaturas (o las que existan)
+    fotos.slice(0, 20).forEach((f, i) => {
+      const b = document.createElement("button");
+      b.className = i===idx ? "active" : "";
+      b.onclick = () => go(i);
+      const im = document.createElement("img");
+      im.src = f.src;
+      im.alt = "miniatura " + (i+1);
+      b.appendChild(im);
+      thumbs.appendChild(b);
+    });
+  }
+
+  function go(i){
+    idx = i;
+    mainImg.src = fotos[idx].src;
+    caption.textContent = "📸 " + fotos[idx].cap;
+    [...thumbs.querySelectorAll("button")].forEach((b, k) => {
+      b.classList.toggle("active", k===idx);
+    });
+  }
+
+  function next(){
+    idx = (idx + 1) % fotos.length;
+    go(idx);
+  }
+
+  function prev(){
+    idx = (idx - 1 + fotos.length) % fotos.length;
+    go(idx);
+  }
+
+  function mensajeSorpresa(){
+    const m = mensajes[Math.floor(Math.random()*mensajes.length)];
+    msgBox.textContent = m;
+    confetti(24);
+  }
+
+  function confetti(count=18){
+    for(let i=0; i<count; i++){
+      const c = document.createElement("div");
+      c.className = "confetti";
+      c.style.left = Math.random()*100 + "vw";
+      c.style.animationDuration = (3 + Math.random()*3) + "s";
+      c.style.width = (8 + Math.random()*8) + "px";
+      c.style.height = (10 + Math.random()*10) + "px";
+      c.style.background = `hsl(${Math.random()*360}, 90%, 60%)`;
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(), 6500);
+    }
+  }
+
+  function shareWhatsApp(){
+    const text = "💐 Feliz Día de la Mujer 💜\n\nUn detalle con cariño para las mujeres de DUGEC – UPCH.\nGracias por su esfuerzo, su energía y su calidez.\n\n(Abre el link/archivo para ver las fotos ✨)";
+    const url = "https://wa.me/?text=" + encodeURIComponent(text);
+    window.open(url, "_blank");
+  }
+
+  // init
+  renderThumbs();
+  go(0);
+
+  // Opcional: autoplay suave
+  // setInterval(next, 7000);
+</script>
+</body>
+</html>

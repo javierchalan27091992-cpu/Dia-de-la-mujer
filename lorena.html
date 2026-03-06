@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Para mi Mamita Querida</title>
+
+<style>
+
+body{
+
+margin:0;
+font-family:'Segoe UI', sans-serif;
+text-align:center;
+color:white;
+
+background:linear-gradient(135deg,#6a040f,#9d0208,#d00000,#dc2f02);
+
+overflow-x:hidden;
+
+}
+
+.container{
+
+max-width:900px;
+margin:auto;
+padding:30px;
+
+}
+
+h1{
+
+font-size:40px;
+margin-bottom:10px;
+
+}
+
+p{
+
+font-size:18px;
+line-height:1.6;
+
+}
+
+.carousel{
+
+margin-top:20px;
+position:relative;
+background:#000;
+border-radius:20px;
+padding:10px;
+
+}
+
+.carousel img{
+
+width:100%;
+height:450px;
+object-fit:contain;
+border-radius:15px;
+
+}
+
+button.nav{
+
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:rgba(0,0,0,0.6);
+color:white;
+border:none;
+font-size:20px;
+width:45px;
+height:45px;
+border-radius:50%;
+cursor:pointer;
+
+}
+
+.prev{ left:15px; }
+
+.next{ right:15px; }
+
+button.message{
+
+margin-top:30px;
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+background:#ff006e;
+color:white;
+
+}
+
+#mensaje{
+
+margin-top:25px;
+font-size:22px;
+font-weight:bold;
+
+}
+
+.heart{
+
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:flotar 8s linear infinite;
+
+}
+
+@keyframes flotar{
+
+0%{transform:translateY(0);}
+100%{transform:translateY(-110vh);}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💜 Feliz Día de la Mujer 💜</h1>
+
+<p>
+Mamita querida, mamita de mi corazón.
+Hoy quiero recordarte cuánto te amo y lo importante que eres para mí.
+</p>
+
+<p>
+Gracias por cada sacrificio, por cada consejo,
+por cada abrazo y por todo el amor que siempre nos has dado.
+</p>
+
+<p>
+Eres el corazón de nuestra familia y mi mayor ejemplo de fortaleza,
+bondad y amor verdadero.
+</p>
+
+<p>
+Todo lo que soy hoy también es gracias a ti.
+</p>
+
+<div class="carousel">
+
+<button class="nav prev" onclick="prev()">◀</button>
+
+<img id="foto" src="mama_1.jpg">
+
+<button class="nav next" onclick="next()">▶</button>
+
+</div>
+
+<button class="message" onclick="mensaje()">
+
+Descubre tu mensaje 💌
+
+</button>
+
+<div id="mensaje"></div>
+
+</div>
+
+<script>
+
+const fotos=[
+
+"mama_1.jpg",
+"mama_2.jpg",
+"mama_3.jpg",
+"mama_4.jpg",
+"mama_5.jpg",
+"mama_6.jpg",
+"mama_7.jpg"
+
+];
+
+let i=0;
+
+function next(){
+
+i++;
+
+if(i>=fotos.length){i=0;}
+
+document.getElementById("foto").src=fotos[i];
+
+}
+
+function prev(){
+
+i--;
+
+if(i<0){i=fotos.length-1;}
+
+document.getElementById("foto").src=fotos[i];
+
+}
+
+const mensajes=[
+
+"Mamita querida, gracias por tu amor infinito y por enseñarme a ser fuerte 💜",
+
+"Eres el corazón de nuestra familia y la persona más importante de mi vida.",
+
+"Todo lo bueno que soy hoy es gracias a ti mamita.",
+
+"Tu amor ha sido siempre mi mayor refugio.",
+
+"Mamita de mi corazón, gracias por todo lo que haces por nosotros.",
+
+"Siempre serás mi orgullo y mi inspiración.",
+
+"No existe amor más grande que el amor de una madre."
+
+];
+
+function mensaje(){
+
+let random=mensajes[Math.floor(Math.random()*mensajes.length)];
+
+document.getElementById("mensaje").innerHTML=random;
+
+}
+
+</script>
+
+</body>
+
+</html>

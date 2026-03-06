@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para mi hermanita 💛</title>
+
+  <style>
+    :root{
+      --bg1:#2b1055;
+      --bg2:#8a1c7c;
+      --bg3:#ff6b6b;
+      --card:#ffffff12;
+      --text:#ffffff;
+      --muted:#ffffffcc;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 20% 10%, #ffffff1a 0%, transparent 60%),
+                  linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 110%);
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .wrap{
+      width:min(980px, 100%);
+      display:grid;
+      gap:18px;
+    }
+
+    .header{
+      background: var(--card);
+      border: 1px solid #ffffff1f;
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .title{
+      margin:0 0 10px 0;
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 800;
+      letter-spacing: .2px;
+    }
+
+    .subtitle{
+      margin:0;
+      font-size: clamp(14px, 2vw, 17px);
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .slider{
+      position:relative;
+      background: #00000033;
+      border: 1px solid #ffffff1f;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      min-height: 520px;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .stage{
+      position: relative;
+      width:100%;
+      flex:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 16px;
+    }
+
+    /* ✅ CLAVE PARA QUE NO SE CORTEN LAS FOTOS */
+    .photo{
+      width:100%;
+      height:100%;
+      max-height: 520px;
+      border-radius: 18px;
+      background:#00000055;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .photo img{
+      width:100%;
+      height:100%;
+      object-fit: contain;   /* <-- NO RECORTA */
+      object-position: center;
+      display:block;
+    }
+
+    .controls{
+      position:absolute;
+      inset: 0;
+      pointer-events:none;
+    }
+
+    .btn{
+      pointer-events:auto;
+      position:absolute;
+      top:50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 999px;
+      border: 1px solid #ffffff33;
+      background: #00000055;
+      color: #fff;
+      display:grid;
+      place-items:center;
+      cursor:pointer;
+      user-select:none;
+      transition: transform .15s ease, background .15s ease;
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    }
+    .btn:hover{ background:#00000077; transform: translateY(-50%) scale(1.04); }
+    .btn:active{ transform: translateY(-50%) scale(.98); }
+
+    .btn.prev{ left:14px; }
+    .btn.next{ right:14px; }
+
+    .footer{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 14px 16px 16px;
+      border-top: 1px solid #ffffff1f;
+      background: #00000022;
+    }
+
+    .counter{
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .dots{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      max-width: 62%;
+    }
+    .dot{
+      width:10px;
+      height:10px;
+      border-radius:999px;
+      background:#ffffff55;
+      border:1px solid #ffffff22;
+      cursor:pointer;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .dot.active{
+      background:#fff;
+      transform: scale(1.12);
+    }
+
+    .small-note{
+      margin:0;
+      font-size: 12.5px;
+      color:#ffffffb8;
+      text-align:center;
+      padding: 6px 6px 0;
+    }
+
+    @media (max-width: 720px){
+      .slider{ min-height: 420px; }
+      .photo{ max-height: 420px; }
+      .dots{ max-width: 100%; justify-content:flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <section class="header">
+      <h1 class="title">Para mi hermanita, mi negrita 💛</h1>
+      <p class="subtitle">
+        Hermana de mi corazón… gracias por estar en mi vida, por tu cariño, por tu fuerza y por ser esa compañía
+        que no falla. A tu lado los recuerdos se sienten más bonitos, y la familia se siente más completa.  
+        <br><br>
+        <strong>Te quiero muchísimo</strong>, mi hermanita. Hoy y siempre, cuenta conmigo. ✨
+      </p>
+    </section>
+
+    <section class="slider" aria-label="Galería de fotos">
+      <div class="stage">
+        <div class="photo">
+          <img id="img" src="" alt="Foto con mi hermanita"/>
+        </div>
+
+        <div class="controls">
+          <button class="btn prev" id="prev" aria-label="Foto anterior">❮</button>
+          <button class="btn next" id="next" aria-label="Foto siguiente">❯</button>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="counter" id="counter">1 / 6</div>
+        <div class="dots" id="dots" aria-label="Indicadores de fotos"></div>
+      </div>
+    </section>
+
+    <p class="small-note">Tip: si quieres que cambie automáticamente cada cierto tiempo, te lo activo en 1 línea.</p>
+
+  </div>
+
+  <script>
+    // ✅ Cambia aquí los nombres por los de tus fotos (3 a 6 fotos o las que quieras).
+    // Recomendado: guardar este HTML y las imágenes en la misma carpeta.
+    const images = [
+      "casandra_1.jpg",
+      "casandra_2.jpg",
+      "casandra_3.jpg",
+      "casandra_4.jpg",
+      "casandra_5.jpg",
+      "casandra_6.jpg"
+    ];
+
+    let index = 0;
+
+    const img = document.getElementById("img");
+    const counter = document.getElementById("counter");
+    const dotsWrap = document.getElementById("dots");
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
+
+    function buildDots(){
+      dotsWrap.innerHTML = "";
+      images.forEach((_, i) => {
+        const d = document.createElement("div");
+        d.className = "dot" + (i === index ? " active" : "");
+        d.title = `Ir a la foto ${i+1}`;
+        d.addEventListener("click", () => show(i));
+        dotsWrap.appendChild(d);
+      });
+    }
+
+    function show(i){
+      index = (i + images.length) % images.length;
+      img.src = images[index];
+      counter.textContent = `${index + 1} / ${images.length}`;
+      [...dotsWrap.children].forEach((dot, k) => {
+        dot.classList.toggle("active", k === index);
+      });
+    }
+
+    prevBtn.addEventListener("click", () => show(index - 1));
+    nextBtn.addEventListener("click", () => show(index + 1));
+
+    // Teclado: flechas
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "ArrowLeft") show(index - 1);
+      if(e.key === "ArrowRight") show(index + 1);
+    });
+
+    // Init
+    buildDots();
+    show(0);
+
+    // ✅ Si quieres autoplay, descomenta esto:
+    // setInterval(() => show(index + 1), 3500);
+  </script>
+</body>
+</html>
